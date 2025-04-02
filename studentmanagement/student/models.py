@@ -7,15 +7,15 @@ class Student(models.Model):
   ('O', 'Other'),
   )
 
-first_name = models.CharField(max_length=50)
-last_name = models.CharField(max_length=50)
-student_id = models.CharField(max_length=20, unique=True)
-date_of_birth = models.DateField()
-gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-email = models.EmailField(unique=True)
-phone_number = models.CharField(max_length=15)
-address = models.TextField()
-enrollment_date = models.DateField(auto_now_add=True)
+  first_name = models.CharField(max_length=50)
+  last_name = models.CharField(max_length=50)
+  student_id = models.CharField(max_length=20, unique=True)
+  date_of_birth = models.DateField()
+  gender = models.CharField(max_length=1, choices= GENDER_CHOICES)
+  email = models.EmailField(unique=True)
+  phone_number = models.CharField(max_length=15)
+  address = models.TextField()
+  enrollment_date = models.DateField(auto_now_add=True)
 
 def __str__(self):
   return f"{self.first_name} {self.last_name} ({self.student_id})"
@@ -38,10 +38,10 @@ class Enrollment(models.Model):
   ('IP', 'In Progress'),
   )
 
-student = models.ForeignKey(Student, on_delete=models.CASCADE)
-course = models.ForeignKey(Course, on_delete=models.CASCADE)
-enrollment_date = models.DateField(auto_now_add=True)
-grade = models.CharField(max_length=2, choices=GRADE_CHOICES, default='IP')
+  student = models.ForeignKey(Student, on_delete=models.CASCADE)
+  course = models.ForeignKey(Course, on_delete=models.CASCADE)
+  enrollment_date = models.DateField(auto_now_add=True)
+  grade = models.CharField(max_length=2, choices=GRADE_CHOICES, default='IP')
 
 class Meta:
   unique_together = ('student', 'course')
